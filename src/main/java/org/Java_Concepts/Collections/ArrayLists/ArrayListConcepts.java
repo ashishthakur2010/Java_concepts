@@ -44,8 +44,10 @@ public class ArrayListConcepts {
 
         System.out.println("//Using lambda:");
         ar.forEach(element -> System.out.println(element));
+
         System.out.println("//Using Streams with lambda:");
         ar.stream().forEach(element -> System.out.println(element));
+
         System.out.println("//Using Method references: ");
         ar.forEach(System.out::println);
 
@@ -60,6 +62,4 @@ public class ArrayListConcepts {
 
 
     }
-
-
 }

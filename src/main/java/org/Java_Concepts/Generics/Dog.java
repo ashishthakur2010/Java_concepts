@@ -1,8 +1,8 @@
 package org.Java_Concepts.Generics;
 
 public class Dog extends Animal {
-    private String name;
-    private int age;
+    private final String name;
+    private final int age;
      Dog(String name, int age) {
         this.name = name;
         this.age = age;

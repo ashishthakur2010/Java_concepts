@@ -5,6 +5,8 @@ import java.util.Arrays;
 import java.util.Collections;
 
 public class ArrayListMethods {
+
+
     public static ArrayList<Integer> getIntArrayList(int a, int b, int c, int d, int e) {
         ArrayList<Integer> ar = new ArrayList<>(Arrays.asList(a, b, c, d, e));
         return ar;
