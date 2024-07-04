@@ -1,4 +1,4 @@
-package org.Java_Concepts.LinkedList;
+package org.Java_Concepts.Collections.LinkedList;
 
 import java.util.*;
 

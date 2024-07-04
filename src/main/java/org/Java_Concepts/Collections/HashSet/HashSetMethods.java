@@ -1,4 +1,4 @@
-package org.Java_Concepts.HashSet;
+package org.Java_Concepts.Collections.HashSet;
 
 import java.util.Arrays;
 import java.util.HashSet;

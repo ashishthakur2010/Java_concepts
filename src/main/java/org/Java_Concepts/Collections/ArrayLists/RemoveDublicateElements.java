@@ -13,7 +13,7 @@ public class RemoveDublicateElements {
     //print using method reference.
 
     public static void main(String[] args) {
-        ArrayList<Integer> intArray =ArrayListMethods.getTArrayList(1,11,2,4,5, 1,7,5,4,10,1,1,3,14);
+        ArrayList<Integer> intArray = ArrayListMethods.getTArrayList(1,11,2,4,5, 1,7,5,4,10,1,1,3,14);
 
        //1:LinkedHashSet
         LinkedHashSet<Integer> intArraySet =new LinkedHashSet<>(intArray);

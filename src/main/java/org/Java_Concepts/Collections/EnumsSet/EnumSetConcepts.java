@@ -1,4 +1,4 @@
-package org.Java_Concepts.EnumsSet;
+package org.Java_Concepts.Collections.EnumsSet;
 
 import java.util.EnumSet;
 import java.util.Iterator;
