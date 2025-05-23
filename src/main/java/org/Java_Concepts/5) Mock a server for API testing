@@ -1,0 +1,121 @@
+Mock a server for API testing: https://lnkd.in/gaEh3BAC
+
+Postman is one of the most versatile tools for API testing and its automation. In this tutorial we are going to understand the implementation of API testing using Postman as a beginner. Then in upcoming blogs, I’ll be posting blogs for “How I am using Postman for API testing, mocking, documenting, performance, interception and automation” So subscribe for email notification.
+
+Let’s start with first downloading and installing the Postman tool in our machines: Postman is available for Windows, Linux, and Mac as a standalone application. You can install the application in two ways.
+
+Windows machine download link: https://dl-agent.pstmn.io/download/latest/win64 (64 bit)
+
+Mac OS machine download link: https://dl-agent.pstmn.io/download/latest/osx_arm64 (Apple Chip)
+
+Now follow the below steps:
+
+Click on the exe file to install it on the system. First, it will install the Postman application
+There are no further steps for installing. After completion, it will automatically start opening the Postman tool
+You might need to create a new account, for first time users and use your google account for the sign-up process.
+
+Created by: Japneet Sachdeva
+What is a mock server?
+
+It is just a fake server that is simulated to work as a real server so that we can test our APIs and check the response or errors. This server is set up in such a way that we get a particular response for a particular request that we desire to see.
+
+In Agile methodology, in this method, testing and development goes side by side. For this, a tester needs to have the same requirement as the developer to work simultaneously. For which you need a mock server.
+
+What are some advantages of Mocking a server?
+
+To separate the system under test from third party services, such as APIs, you may laugh at a server. Therefore these tests will concentrate on how the SUT behaves and not be influenced by service availability or performance.
+By using a mocked server you can control what kind of responses are sent to the SUT when testing is going on. This in turn lets us simulate situations like network error, timeout and unexpected response ensuring that SUT behaves correctly under such conditions.
+Network delays and dependencies on other systems are eliminated in mocked servers making them usually faster and more reliable than servers. The reason why this is done is that it increases test execution speed, enhances efficiency hence allowing for quick feedback cycles and testing runs.
+When you mock a server behavior during tests can be created which makes it easier to reproduce scenarios accurately. Since one can re-create the circumstances that led to failure, this consistency is very important for fault diagnosis and repair purposes.
+This freedom allows for progress and experimentation as teams have ability to establish and manage their simulated servers without relying on external factors being ready or up-to-date thus mocking a server enables automation teams to operate independently of teams or services.
+A front-end developer needs to develop the UI for which he must know the responses he will get. For the same he cannot wait until the APIs are on the server, so he uses the mock server in order to achieve the same and save time.
+
+I guess now you must have known that a mock server is a pretty important feature for a tester. It is very helpful in both the development and test phases of software. Continuing for the same we will now proceed to create our first mock server.
+
+How to create a mock server in Postman?
+
+Step — 1
+
+
+Step — 2
+
+
+Once you click on create mock serve, you’ll move to a new screen. As shown below. In which you need enter
+
+Request Method
+Request URL
+Response Code expected
+Response Body expected
+You can use below data for reference and setup your first mock server
+
+1st Request
+
+Method — POST
+Request URL: https://petstore.japneet.io/v2/user/createWithArray
+Response Code: 200
+Response Body: {
+“code”: 200,
+
+“type”: “unknown”,
+
+“message”: “ok”
+
+}
+
+2nd Request
+
+Method — GET
+Request URL: https://petstore.japneet.io/v2/user/demo1
+Response Code: 200
+Response Body: {
+“id”: 1,
+
+“username”: “demo1”,
+
+“firstName”: “demo1”,
+
+“lastName”: “Sachdeva”,
+
+“email”: “demo@google.com”,
+
+“password”: “1234”,
+
+“phone”: “1234567890”,
+
+“userStatus”: 0
+
+}
+
+
+Once done, Now click on the NEXT button. You can set up an Environment and set Mock Server Name.
+
+If required in the dropdown for “Simulate a fixed network delay” -> You can enter network conditions to test. We can do this later too, So I am not going to set it right now.
+
+We will create a new Postman Env. now. Follow below steps:
+
+In the sidebar click on “Environments”
+Click on the “+” symbol and create a new Env.
+Now enter the variable name, values as shown below in screenshot
+Then click save or “Ctrl+S” on windows/ “Command+S” on Mac
+
+Now go back to your mock server tab and select the values as shown below in screenshot
+
+
+Once, mock server is created, you’ll get a screen like below and now we are ready to start the Mock API Testing
+
+
+Use the URL which was generated for your mock server and then we can start testing
+
+As soon as you close the panel, you will see that a new collection with the same name has been created with your APIs that you entered.
+
+
+Environment should be set up like below, if not then do it manually!
+
+
+Note- If you do not select the environment correctly, then you might get error like this “ unresolved variable?”
+
+By this, we have created and understood a mock server in Postman. You can use different formats to practice yourself. I hope you liked this tutorial. We will continue to our next tutorial, till then, keep exploring the mock server and create your own requests.
+
+Do follow for more and if you like such detailed blogs then you can also take a look at my Courses, E-Books or Schedule a One on One call for your doubts!
+
+Prepare and Become a Full Stack Test Architect with coding exercises and course for creating and setup of framework with parallel execution in Docker, Selenium Grid, GitHub Actions, CI/CD: Link

@@ -1,0 +1,278 @@
+1) JAVA Collections for SDET’s & Test Automation Engineers: https://lnkd.in/gaGm6d8X
+
+A collections framework is a unified architecture for representing and manipulating collections
+
+Hierarchy of Collection Framework
+The java.util package contains all the classes and interfaces for the Collection framework.
+
+The collection interfaces are divided into two groups:
+
+The most basic interface, java.util.collection.
+
+
+Commonly used implementations for QA Automation
+The Java Collections Framework provides several general-purpose implementations of the core interfaces:
+
+For the Set interface, HashSet is the most commonly used implementation.
+For the List interface, ArrayList is the most commonly used implementation.
+For the Map interface, HashMap is the most commonly used implementation.
+ArrayList
+The ArrayList class is a resizable array, which can be found in the java.util package.
+
+The important points about Java ArrayList class are:
+
+Java ArrayList class can contain duplicate elements.
+Java ArrayList class maintains insertion order.
+Java ArrayList class is non-synchronized.
+Java ArrayList allows random access because the array works at the index basis.
+In Java ArrayList class, manipulation is slow because a lot of shifting needs to have occurred if any element is removed from the array list.
+Creating an ArrayList and Adding New Elements
+
+The below example demonstrates how to create an ArrayList using the ArrayList() constructor and add new elements to an ArrayList using the add() method.
+
+import java.util.ArrayList;
+
+import java.util.List;
+
+// How to create an ArrayList using the ArrayList() constructor.
+
+// Add new elements to an ArrayList using the add() method.
+
+public class CreateArrayListExample {
+
+public static void main(String[] args) {
+
+// Creating an ArrayList of String using
+
+List<String> fruits = new ArrayList<>();
+
+// Adding new elements to the ArrayList
+
+fruits.add(“Banana”);
+
+fruits.add(“Apple”);
+
+fruits.add(“mango”);
+
+fruits.add(“orange”);
+
+System.out.println(fruits);
+
+}
+
+}
+
+Output:
+
+[Banana, Apple, mango, orange]
+
+How can we get a synchronized version of ArrayList?
+
+Ans: Collections class contains synchronizedList() method for this Public static List synchronizedList(List l)
+
+Example:
+
+ArrayList l= new ArrayList();
+
+List l2=Collections.synchronizedList(l);
+
+Similarly, we can get synchronized versions of Set and Map objects by the following methods.
+
+Public static List synchronizedSet(Set s)
+
+Public static List synchronizedMap(Map m)
+
+HashSET
+The Set is a Collection that cannot contain duplicate elements. It models the mathematical set abstraction.
+
+Ordering:
+
+The elements in a Set can be sorted in ascending order by using the TreeSet implementation class. HashSet implementation class provides no ordering guarantees. The LinkedHashSet implementation class maintains the insertion order.
+
+Null Elements:
+
+All Set implementations permit, at most, one null element
+
+No Position Access:
+
+Unlike the List interface, the Set interface doesn’t provide any methods to access the element by an index as Set doesn’t maintain any fixed order.
+
+Methods in HashSet
+add()
+The add() method can be used for adding elements to a set. The method contract states that an element will be added only when it isn’t already present in a set. If an element was added, the method returns true, otherwise — false.
+
+We can add an element to a HashSet like:
+
+@Test
+
+public void whenAddingElement_shouldAddElement() {
+
+Set<String> hashset = new HashSet<>();
+
+assertTrue(hashset.add(“String Added”));
+
+contains()
+The purpose of the contains method is to check if an element is present in a given HashSet. It returns true if the element is found, otherwise false.
+
+We can check for an element in the HashSet:
+
+@Test
+
+public void whenCheckingForElement_shouldSearchForElement() {
+
+Set<String> hashsetContains = new HashSet<>();
+
+hashsetContains.add(“String Added”);
+
+assertTrue(hashsetContains.contains(“String Added”));
+
+}
+
+Using HashSet with Selenium WebDriver:
+public class SeleniumHashSetExample {
+
+public static void main(String[] args) {
+
+// Set the path to chromedriver executable
+
+System.setProperty(“webdriver.chrome.driver”, “path/to/chromedriver”);
+
+// Initialize ChromeDriver
+
+WebDriver driver = new ChromeDriver();
+
+// Navigate to the webpage
+
+driver.get(“https://example.com");
+
+// Find all links on the webpage
+
+List<WebElement> links = driver.findElements(By.tagName(“a”));
+
+// Create a HashSet to store unique links
+
+Set<String> uniqueLinks = new HashSet<>();
+
+// Iterate through the list of links
+
+for (WebElement link : links) {
+
+// Get the href attribute of the link
+
+String href = link.getAttribute(“href”);
+
+// Add the link to the HashSet
+
+uniqueLinks.add(href);
+
+}
+
+// Print the unique links
+
+System.out.println(“Unique Links:”);
+
+for (String link : uniqueLinks) {
+
+System.out.println(link);
+
+}
+
+// Close the browser
+
+driver.quit();
+
+}
+
+}
+
+HashMap
+A map is a key-value mapping, which means that every key is mapped to exactly one value and that we can use the key to retrieve the corresponding value from a map.
+
+Creation of HashMap:
+HashMap hashmap = new HashMap();
+
+Add any element in HashMap you need to provide 2 thing, key and value.
+
+Key : key with which specified value will be associated. null is allowed.
+
+Value : value to be associated with specified key.
+
+Example:
+
+import java.util.Map;
+
+class Hashmap_Java {
+
+public static void main(String args[]) {
+
+HashMap&lt;Integer, String&gt; map = new HashMap&lt;Integer, String&gt;();
+
+map.put(100, “Mumbai”);
+
+map.put(101, “Delhi”);
+
+map.put(102, “Pune”);
+
+// Add Element
+
+map.put(103, “Surat”);
+
+// Size of map
+
+System.out.println(map.size());
+
+// clears hashmap , removes all element
+
+map.clear();
+
+// Remove element from hashmap
+
+map.remove(100);
+
+// Checking if HashMap is empty
+
+System.out.println(“Is HashMap is empty: “ + map.isEmpty());
+
+for (Map.Entry m : map.entrySet()) {
+
+System.out.println(m.getKey() + “ “ + m.getValue());
+
+}
+
+}
+
+}
+
+Output:
+
+4
+
+Is HashMap is empty: true
+
+Using the Map.Entry Java Class
+We often use maps to store a collection of key-value pairs. Then, at some point, we often need to iterate over them.
+
+In this tutorial, we’ll compare different methods of map iteration, highlighting when it may be beneficial to use Map.Entry. Then, we’ll learn how Map.Entry can be used to create a tuple. Finally, we’ll create an ordered list
+
+Optimizing Map Iteration
+
+Suppose that we have a map of book titles with the author’s name as the key:
+
+Map<String, String> map = new HashMap<>();
+
+map.put(“Robert C. Martin”, “Clean Code”);
+
+map.put(“Joshua Bloch”, “Effective Java”);
+
+Using Map.entrySet
+for (Map.Entry<String, String> book: bookMap.entrySet()) {
+
+System.out.println(“key: “ + book.getKey() + “ value: “ + book.getValue());
+
+}
+
+In this example, our loop is over a collection of Map.Entry objects. As Map.Entry stores both the key and value together in one class, we get them both in a single operation.
+
+These are just the basics for understanding the depth and functions of Collections framework. If you are looking to explore more in-depth understanding of JAVA and Collections with Data Structures, then do checkout my E-Book: Link
+
+My all other courses for becoming a successful SDET, Test Automation Engineer, Test Architect can be found here: Link

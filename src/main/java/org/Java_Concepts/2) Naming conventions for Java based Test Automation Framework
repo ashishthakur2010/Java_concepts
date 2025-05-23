@@ -1,0 +1,80 @@
+2) Naming conventions for Java based Test Automation Framework: https://lnkd.in/grhFquC3
+
+Scaling a Test Automation Frameworks require different factors, one such crucial factor is managing “Naming Conventions”. This one helps our code to be readable and reduces code complexity.
+Why Naming conventions matter?
+1) Consistent naming conventions helps in code readability and makes it easier for whole team to understand the code base.
+
+2) Maintenance becomes easier, as we can easily understand where the dependencies, constants etc. needs to be updated.
+
+3) Newer team members, can go through the code base directly and do not require to get a documentation or discussion with other team members.
+
+Naming Conventions for
+Packages:
+Keep all package names in lowercase, separated by periods (.). Start with your company’s domain in reverse, followed by clear and concise module names.
+
+Example:
+
+com.automationtech.test.pages
+com.automationtech.test.utils
+Classes:
+Use PascalCase for class names. Each class name should be noun-based and clearly define what the class does.
+
+Example:
+
+LoginPage, TestBase, BrowserFactory
+Methods:
+Use camelCase for methods, and start each name with an action verb describing its behavior.
+
+Example:
+
+loginToApplication(),
+clickSubmitButton()
+Variables:
+Follow camelCase for variable names. These should be self-explanatory to reflect their purpose.
+
+Example:
+
+String username,
+int maxRetries
+Constants
+Use ALL_CAPS and underscores (_) for constants, which should be declared static final.
+
+Example:
+
+public static final int DEFAULT_TIMEOUT = 30
+Interfaces
+Use PascalCase, and avoid prefixing interfaces with ‘I’. Interface names should describe a capability, often as nouns or adjectives.
+
+Example:
+
+WebDriver,
+TestRunner
+Creating Test Classes:
+End your test class names with Test. The class name should represent the functionality being tested.
+
+Example:
+
+LoginTest,
+SearchFunctionalityTest
+Test Methods:
+Follow camelCase for test methods, which should describe the action, scenario, and expected result.
+
+Example:
+
+loginWithValidCredentials(),
+verifyHomePageTitle()
+Utilities and Helpers
+Keep utility package names logical and avoid deep nesting.
+
+Example:
+
+com.automation.test.utils
+Loggers
+Use camelCase for log variables, often reflecting the class being logged.
+
+Example:
+
+private static final Logger log = LoggerFactory.getLogger(LoginPage.class);
+Conclusion:
+By following these naming conventions, you ensure that your automation framework will not only be readable and maintainable but will also scale seamlessly as your projects grow.
+

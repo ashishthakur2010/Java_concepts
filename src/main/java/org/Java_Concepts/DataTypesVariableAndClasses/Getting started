@@ -1,0 +1,20 @@
+In your first program, we printed out "Hello world" like every first program should. But we also added two numbers together, just to give a taste of a simple programming operation.
+
+In that example, we used the "int" data type, which can be used to hold whole numbers (not decimals).
+
+But there are also many other basic data types available in Java, which we'll get into detail about in our less on primitive data types. In the meantime, you can play with another data type called "float", which can represent decimal values. Here's how you create a variable of type "float":
+
+float myFloat = 3.87f;
+(Yes, you do have to have the "f" in there.)
+
+You can do arithmetic using floats in combination with ints:
+
+System.out.println(myFloat + myInt);
+My suggestion here is something you'll get sick of me saying throughout this course: Play around with this.
+
+Create a float and an int, and maybe a few floats and a few ints with all kinds of different values, and try doing various mathematical operations between them.
+
++ - * /
+Print out your results. Try assigning results to new variables. See where you get compilation errors and where you don't. When you don't, see what results you get. Are they always what you expect?
+
+This kind of experimentation will help you learn what you can do and how.

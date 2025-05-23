@@ -1,0 +1,166 @@
+All Wait strategies in Selenium WebDriver: https://lnkd.in/gwa2sX2b
+
+The most common challenge for browser automation is ensuring that the web application is in a state to execute a particular Selenium command as desired. The processes often end up in a race condition where sometimes the browser gets into the right state first (things work as intended) and sometimes the Selenium code executes first (things do not work as intended). This is one of the primary causes of flaky tests.
+
+Similarly, in a lot of single page applications, elements get dynamically added to a page or change visibility based on a click. An element must be both present and displayed on the page in order for Selenium to interact with it. The first solution many people turn to is adding a sleep statement to pause the code execution for a set period of time. Because the code can’t know exactly how long it needs to wait, this can fail when it doesn’t sleep long enough. Alternately, if the value is set too high and a sleep statement is added in every place it is needed, the duration of the session can become too long.
+
+Let’s dive into different wait strategies provided by Selenium to handle such abrupt situations effectively:
+
+Implicit wait: A Simple Global Delay
+What it is:
+Implicit wait is a global setting that instructs Selenium WebDriver to wait for a certain amount of time before throwing a NoSuchElementException if an element is not immediately available.
+
+It’s a simple, built-in mechanism to handle potential synchronization issues during test execution.
+
+How it works:
+You set a timeout value (in seconds) using driver.manage().timeouts().implicitlyWait(time, TimeUnit.SECONDS).
+
+Before each findElement or findElements call, WebDriver pauses for the specified time if the element isn’t found immediately.
+
+If the element still isn’t found after the timeout, exception is thrown.
+
+Key points:
+It applies to all subsequent findElement calls within the current WebDriver session.
+
+It only waits for elements to be present, not necessarily visible or clickable.
+
+It can slow down test execution if elements load quickly.
+
+It can be overridden by explicit waits for specific conditions.
+
+When to use it:
+For simple scenarios where you expect minor delays in element loading.
+
+To provide a basic level of synchronisation for your tests.
+
+When to avoid it:
+When you need precise control over waiting for specific conditions like element visibility or click ability.
+
+When you want to avoid unnecessary delays in test execution.
+
+When you’re dealing with dynamic elements or unpredictable loading times.
+
+Best practices:
+Use a moderate timeout value (e.g., 5–10 seconds).
+
+Avoid using it alongside explicit waits as it can lead to unpredictable behavior.
+
+Consider Fluent Wait for more granular control over waiting conditions.
+
+Example:
+WebDriver driver = new ChromeDriver();
+
+driver.manage().timeouts().implicitlyWait(10, TimeUnit.SECONDS);
+
+// Subsequent findElement calls will wait up to 10 seconds
+
+driver.findElement(By.id(“myElement”));
+
+Explicit wait: Targeted Waiting for Specific Conditions
+What it is:
+Explicit wait is a dynamic and flexible mechanism in Selenium that allows you to wait for specific conditions to be met before proceeding with test script execution.
+
+It provides more control and precision compared to implicit wait, ensuring actions are performed only when elements are ready.
+
+How it works:
+You create a WebDriverWait object, specifying a timeout and the WebDriver instance.
+
+You use the until method to define the condition to wait for, often using Expected Conditions classes for common scenarios.
+
+WebDriverWait polls the condition repeatedly until it’s true or the timeout expires, throwing a TimeoutException if unsuccessful.
+
+Key points:
+Targets specific conditions, not just element presence (e.g., visibility, click ability, text presence).
+
+Offers more control and flexibility compared to implicit wait.
+
+Prevents errors caused by interacting with elements before they’re ready.
+
+Improves test reliability and accuracy.
+
+When to use it:
+When you need to wait for specific element states or conditions.
+
+When dealing with dynamic content, AJAX requests, or unpredictable loading times.
+
+When testing complex web applications with dynamic interactions.
+
+Common Expected Conditions:
+elementToBeClickable: Waits for an element to be visible and clickable.
+
+visibilityOfElementLocated: Waits for an element to be visible.
+
+presenceOfElementLocated: Waits for an element to be present in the DOM.
+
+textToBePresentInElement: Waits for specific text to appear within an element.
+
+titleIs: Waits for the page title to match a specific value.
+
+Example:
+WebDriver driver = new ChromeDriver();
+
+WebDriverWait wait = new WebDriverWait(driver, 10);
+
+// Wait for the submit button to be clickable
+
+wait.until(ExpectedConditions.elementToBeClickable(By.id(“submitButton”))).click();
+
+Fluent Wait: Fluent wait is a powerful and customisable mechanism in Selenium that helps manage waiting for specific conditions during your automated tests. It’s more flexible and efficient than traditional implicit waits and offers several advantages:
+What is it?
+Fluent wait defines a maximum timeout and a polling frequency for checking a specific condition.
+
+Instead of waiting the entire timeout continuously, it attempts the condition at regular intervals until it becomes true or the timeout is reached.
+
+This makes your tests more efficient and responsive, avoiding unnecessary delays even if the element/condition appears sooner.
+
+Key features:
+Configurable timeout: Set the maximum time to wait for the condition.
+
+Polling frequency: Define how often to check for the condition (e.g., every 500 milliseconds).
+
+Ignored exceptions: Specify exceptions to ignore during the wait (e.g., StaleElementReferenceException).
+
+Custom condition: Define your own condition using a Lambda function to check for anything
+
+beyond simple element presence.
+
+Benefits:
+Faster tests: Only waits for the actual condition instead of a fixed timeout.
+
+Improved reliability: Reduces flaky tests caused by unpredictable element loading times.
+
+More accurate tests: Checks for specific conditions beyond just element presence.
+
+Enhanced code readability: Makes wait logic clear and concise compared to nested loops.
+
+How to use it:
+Initialise a FluentWait object with your WebDriver instance and timeout.
+
+Use methods like withTimeout, pollingEvery, and ignoring to configure the wait parameters.
+
+Define your specific condition through a Lambda function in the until method.
+
+The wait will keep checking the condition until it becomes true or the timeout is reached.
+
+Example:
+WebDriver driver = new ChromeDriver();
+
+FluentWait<WebDriver> wait = new FluentWait<>(driver)
+
+.withTimeout(Duration.ofSeconds(10))
+
+.pollingEvery(Duration.ofMillis(500))
+
+.ignoring(StaleElementReferenceException.class)
+
+.until(driver -> driver.findElement(By.id(“submitButton”)).isEnabled());
+
+System.out.println(“Submit button is now enabled!”);
+
+This example waits for up to 10 seconds, checking every 500 milliseconds, ignoring stale element exceptions, until the submit button is enabled.
+
+Page Load Timeout
+Specifies the time interval in which web page needs to be loaded in a current browsing context. The default timeout 300,000 is imposed when a new session is created by WebDriver. If page load limits a given/default time frame, the script will be stopped by TimeoutException.
+
+Example:
+driver.manage().timeouts().pageLoadTimeout(Duration.ofSeconds(3));
